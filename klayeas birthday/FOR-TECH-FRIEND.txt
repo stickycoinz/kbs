@@ -1,0 +1,54 @@
+📧 FOR THE TECH-SAVVY FRIEND HELPING OUT 📧
+
+Hi! Someone asked you to help put Klayea's birthday stream scheduler online. Here's what you need to know:
+
+🎯 GOAL: Make the HTML file accessible to everyone via a web URL
+
+📁 WHAT YOU HAVE:
+- klayeas-birthday-stream.html (complete single-file app)
+- This is a fully functional web app with local storage
+
+⚡ FASTEST DEPLOYMENT OPTIONS:
+
+1. NETLIFY (EASIEST - 2 minutes):
+   - Go to netlify.com
+   - Drag & drop the HTML file onto the deploy area
+   - Get instant live URL
+   - Free forever
+
+2. VERCEL:
+   - Go to vercel.com
+   - Sign up with GitHub/Google
+   - Drop file or connect GitHub repo
+   - Get live URL
+
+3. GITHUB PAGES (FREE):
+   - Create GitHub repo
+   - Upload HTML file as "index.html"
+   - Enable GitHub Pages in settings
+   - Get yourname.github.io/reponame URL
+
+4. ANY HOSTING:
+   - Upload the HTML file to any web hosting
+   - Rename to "index.html" if needed
+   - It's just a single HTML file - works anywhere
+
+🔧 TECHNICAL NOTES:
+- Uses localStorage for persistence (data stays on user's browser)
+- No backend needed - it's completely client-side
+- Responsive design works on all devices
+- Uses Tailwind CSS via CDN
+- Vanilla JavaScript - no dependencies
+
+⚠️ IMPORTANT:
+- Each user's bookings are saved locally on their device
+- For true shared state, you'd need to add a backend
+- But for a birthday party, local storage is probably fine
+- People can coordinate via Discord/chat anyway
+
+🎁 BONUS - IF THEY WANT SHARED BOOKINGS:
+You could quickly add Firebase Firestore or Supabase to make bookings sync across all users, but the current version is probably sufficient for a birthday party coordination.
+
+The HTML file is production-ready as-is! Just upload it anywhere that serves static files.
+
+Thanks for helping make Klayea's birthday special! 🎂

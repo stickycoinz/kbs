@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klayea's Birthday Stream Collab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            300: '#f9a8d4',
+                            400: '#f472b6',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                            800: '#9d174d',
+                            900: '#831843',
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .time-slot {
+            @apply bg-white border-2 border-gray-200 rounded-lg p-4 transition-all duration-200 hover:border-pink-300 hover:shadow-md cursor-pointer;
+        }
+        
+        .time-slot.selected {
+            @apply border-pink-500 bg-pink-50 shadow-md;
+        }
+        
+        .time-slot.booked {
+            @apply border-green-400 bg-green-50 cursor-not-allowed;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50">
+    <div class="min-h-screen py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <!-- Header Banner -->
+            <div class="text-center mb-8">
+                <div class="bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 text-white py-8 px-6 rounded-2xl shadow-lg">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-2">
+                        🎂 Klayea's Birthday Stream Collab List 🎂
+                    </h1>
+                    <p class="text-lg md:text-xl opacity-90">
+                        September 19-21, 2024 • Choose your 2-hour streaming slot!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Booking Controls -->
+            <div id="bookingSection" class="bg-white rounded-xl shadow-lg p-6 mb-8 border-2 border-pink-200 hidden">
+                <h3 class="text-xl font-semibold mb-4 text-gray-800">
+                    Book Selected Time Slot
+                </h3>
+                <div class="flex flex-col sm:flex-row gap-4 items-end">
+                    <div class="flex-1">
+                        <label for="streamer-name" class="block text-sm font-medium text-gray-700 mb-2">
+                            Your Streaming Name
+                        </label>
+                        <input
+                            id="streamer-name"
+                            type="text"
+                            placeholder="Enter your name or streaming handle"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none transition-colors"
+                        />
+                    </div>
+                    <button
+                        id="bookSlotBtn"
+                        class="px-6 py-3 bg-pink-600 text-white font-semibold rounded-lg hover:bg-pink-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+                    >
+                        Book Slot
+                    </button>
+                    <button
+                        id="cancelBtn"
+                        class="px-6 py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-600 transition-colors"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </div>
+
+            <!-- Time Slots -->
+            <div class="space-y-8">
+                <!-- Friday -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b border-gray-200 pb-3">
+                        Friday 19th
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="time-slot" data-slot="fri-1" data-day="Friday 19th" data-time="5:00 PM - 7:00 PM" data-eastern="5:00 PM - 7:00 PM EST" data-bst="10:00 PM - 12:00 AM BST">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="font-semibold text-gray-800">5:00 PM - 7:00 PM</div>
+                                <button class="clear-btn text-red-500 hover:text-red-700 text-sm underline hidden">Clear</button>
+                            </div>
+                            <div class="text-sm text-gray-600 mb-2">
+                                <div>Eastern: 5:00 PM - 7:00 PM EST</div>
+                                <div>BST: 10:00 PM - 12:00 AM BST</div>
+                            </div>
+                            <div class="status text-gray-500 text-sm">Available</div>
+                        </div>
+                        
+                        <div class="time-slot" data-slot="fri-2" data-day="Friday 19th" data-time="7:00 PM - 9:00 PM" data-eastern="7:00 PM - 9:00 PM EST" data-bst="12:00 AM - 2:00 AM BST">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="font-semibold text-gray-800">7:00 PM - 9:00 PM</div>
+                                <button class="clear-btn text-red-500 hover:text-red-700 text-sm underline hidden">Clear</button>
+                            </div>
+                            <div class="text-sm text-gray-600 mb-2">
+                                <div>Eastern: 7:00 PM - 9:00 PM EST</div>
+                                <div>BST: 12:00 AM - 2:00 AM BST</div>
+                            </div>
+                            <div class="status text-gray-500 text-sm">Available</div>
+                        </div>
+                        
+                        <div class="time-slot" data-slot="fri-3" data-day="Friday 19th" data-time="9:00 PM - 11:00 PM" data-eastern="9:00 PM - 11:00 PM EST" data-bst="2:00 AM - 4:00 AM BST">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="font-semibold text-gray-800">9:00 PM - 11:00 PM</div>
+                                <button class="clear-btn text-red-500 hover:text-red-700 text-sm underline hidden">Clear</button>
+                            </div>
+                            <div class="text-sm text-gray-600 mb-2">
+                                <div>Eastern: 9:00 PM - 11:00 PM EST</div>
+                                <div>BST: 2:00 AM - 4:00 AM BST</div>
+                            </div>
+                            <div class="status text-gray-500 text-sm">Available</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saturday -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b border-gray-200 pb-3">
+                        Saturday 20th
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="time-slot" data-slot="sat-1" data-day="Saturday 20th" data-time="10:00 AM - 12:00 PM" data-eastern="10:00 AM - 12:00 PM EST" data-bst="3:00 PM - 5:00 PM BST">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="font-semibold text-gray-800">10:00 AM - 12:00 PM</div>
+                                <button class="clear-btn text-red-500 hover:text-red-700 text-sm underline hidden">Clear</button>
+                            </div>
+                            <div class="text-sm text-gray-600 mb-2">
+                                <div>Eastern: 10:00 AM - 12:00 PM EST</div>
+                                <div>BST: 3:00 PM - 5:00 PM BST</div>
+                            </div>
+                            <div class="status text-gray-500 text-sm">Available</div>
+                        </div>
+                        
+                        <div class="time-slot" data-slot="sat-2" data-day="Saturday 20th" data-time="12:00 PM - 2:00 PM" data-eastern="12:00 PM - 2:00 PM EST" data-bst="5:00 PM - 7:00 PM BST">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="font-semibold text-gray-800">12:00 PM - 2:00 PM</div>
+                                <button class="clear-btn text-red-500 hover:text-red-700 text-sm underline hidden">Clear</button>
+                            </div>
+                            <div class="text-sm text-gray-600 mb-2">
+                                <div>Eastern: 12:00 PM - 2:00 PM EST</div>
+                                <div>BST: 5:00 PM - 7:00 PM BST</div>
+                            </div>
+                            <div class="status text-gray-500 text-sm">Available</div>
+                        </div>
+                        
+                        <div class="time-slot" data-slot="sat-3" data-day="Saturday 20th" data-time="2:00 PM - 4:00 PM" data-eastern="2:00 PM - 4:00 PM EST" data-bst="7:00 PM - 9:00 PM BST">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="font-semibold text-gray-800">2:00 PM - 4:00 PM</div>
+                                <button class="clear-btn text-red-500 hover:text-red-700 text-sm underline hidden">Clear</button>
+                            </div>
+                            <div class="text-sm text-gray-600 mb-2">
+                                <div>Eastern: 2:00 PM - 4:00 PM EST</div>
+                                <div>BST: 7:00 PM - 9:00 PM BST</div>
+                            </div>
+                            <div class="status text-gray-500 text-sm">Available</div>
+                        </div>
+                        
+                        <div class="time-slot" data-slot="sat-4" data-day="Saturday 20th" data-time="4:00 PM - 6:00 PM" data-eastern="4:00 PM - 6:00 PM EST" data-bst="9:00 PM - 11:00 PM BST">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="font-semibold text-gray-800">4:00 PM - 6:00 PM</div>
+                                <button class="clear-btn text-red-500 hover:text-red-700 text-sm underline hidden">Clear</button>
+                            </div>
+                            <div class="text-sm text-gray-600 mb-2">
+                                <div>Eastern: 4:00 PM - 6:00 PM EST</div>
+                                <div>BST: 9:00 PM - 11:00 PM BST</div>
+                            </div>
+                            <div class="status text-gray-500 text-sm">Available</div>
+                        </div>
+                        
+                        <div class="time-slot" data-slot="sat-5" data-day="Saturday 20th" data-time="6:00 PM - 8:00 PM" data-eastern="6:00 PM - 8:00 PM EST" data-bst="11:00 PM - 1:00 AM BST">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="font-semibold text-gray-800">6:00 PM - 8:00 PM</div>
+                                <button class="clear-btn text-red-500 hover:text-red-700 text-sm underline hidden">Clear</button>
+                            </div>
+                            <div class="text-sm text-gray-600 mb-2">
+                                <div>Eastern: 6:00 PM - 8:00 PM EST</div>
+                                <div>BST: 11:00 PM - 1:00 AM BST</div>
+                            </div>
+                            <div class="status text-gray-500 text-sm">Available</div>
+                        </div>
+                        
+                        <div class="time-slot" data-slot="sat-6" data-day="Saturday 20th" data-time="8:00 PM - 10:00 PM" data-eastern="8:00 PM - 10:00 PM EST" data-bst="1:00 AM - 3:00 AM BST">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="font-semibold text-gray-800">8:00 PM - 10:00 PM</div>
+                                <button class="clear-btn text-red-500 hover:text-red-700 text-sm underline hidden">Clear</button>
+                            </div>
+                            <div class="text-sm text-gray-600 mb-2">
+                                <div>Eastern: 8:00 PM - 10:00 PM EST</div>
+                                <div>BST: 1:00 AM - 3:00 AM BST</div>
+                            </div>
+                            <div class="status text-gray-500 text-sm">Available</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sunday -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b border-gray-200 pb-3">
+                        Sunday 21st
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="time-slot" data-slot="sun-1" data-day="Sunday 21st" data-time="12:00 PM - 2:00 PM" data-eastern="12:00 PM - 2:00 PM EST" data-bst="5:00 PM - 7:00 PM BST">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="font-semibold text-gray-800">12:00 PM - 2:00 PM</div>
+                                <button class="clear-btn text-red-500 hover:text-red-700 text-sm underline hidden">Clear</button>
+                            </div>
+                            <div class="text-sm text-gray-600 mb-2">
+                                <div>Eastern: 12:00 PM - 2:00 PM EST</div>
+                                <div>BST: 5:00 PM - 7:00 PM BST</div>
+                            </div>
+                            <div class="status text-gray-500 text-sm">Available</div>
+                        </div>
+                        
+                        <div class="time-slot" data-slot="sun-2" data-day="Sunday 21st" data-time="2:00 PM - 4:00 PM" data-eastern="2:00 PM - 4:00 PM EST" data-bst="7:00 PM - 9:00 PM BST">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="font-semibold text-gray-800">2:00 PM - 4:00 PM</div>
+                                <button class="clear-btn text-red-500 hover:text-red-700 text-sm underline hidden">Clear</button>
+                            </div>
+                            <div class="text-sm text-gray-600 mb-2">
+                                <div>Eastern: 2:00 PM - 4:00 PM EST</div>
+                                <div>BST: 7:00 PM - 9:00 PM BST</div>
+                            </div>
+                            <div class="status text-gray-500 text-sm">Available</div>
+                        </div>
+                        
+                        <div class="time-slot" data-slot="sun-3" data-day="Sunday 21st" data-time="4:00 PM - 6:00 PM" data-eastern="4:00 PM - 6:00 PM EST" data-bst="9:00 PM - 11:00 PM BST">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="font-semibold text-gray-800">4:00 PM - 6:00 PM</div>
+                                <button class="clear-btn text-red-500 hover:text-red-700 text-sm underline hidden">Clear</button>
+                            </div>
+                            <div class="text-sm text-gray-600 mb-2">
+                                <div>Eastern: 4:00 PM - 6:00 PM EST</div>
+                                <div>BST: 9:00 PM - 11:00 PM BST</div>
+                            </div>
+                            <div class="status text-gray-500 text-sm">Available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notes Section -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mt-8">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">Special Requests & Availability</h2>
+                <div class="space-y-6">
+                    <div>
+                        <label for="special-requests" class="block text-sm font-medium text-gray-700 mb-2">
+                            Special Time Requests or Notes
+                        </label>
+                        <textarea
+                            id="special-requests"
+                            placeholder="e.g., 'I need a specific time slot for timezone reasons' or 'I can only stream on Saturday'"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none transition-colors resize-y min-h-[120px]"
+                        ></textarea>
+                    </div>
+                    
+                    <div>
+                        <label for="availability" class="block text-sm font-medium text-gray-700 mb-2">
+                            General Availability (if flexible with scheduling)
+                        </label>
+                        <textarea
+                            id="availability"
+                            placeholder="e.g., 'Available any time Saturday or Sunday' or 'Prefer evening slots on any day'"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 outline-none transition-colors resize-y min-h-[120px]"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="bg-blue-50 rounded-xl p-6 mt-8 border border-blue-200">
+                <h3 class="text-lg font-semibold text-blue-800 mb-3">How to Use:</h3>
+                <ul class="list-disc list-inside space-y-2 text-blue-700">
+                    <li>Click on any available time slot to select it</li>
+                    <li>Enter your streaming name and click "Book Slot" to reserve it</li>
+                    <li>You can click "Clear" on any booked slot to remove the booking</li>
+                    <li>Use the notes section below if you need specific times or have flexible availability</li>
+                    <li>All times are shown in both Eastern Time (EST) and British Summer Time (BST)</li>
+                </ul>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center mt-8 text-gray-600">
+                <p>🎉 Happy Birthday Klayea! 🎉</p>
+                <p class="text-sm mt-2">Made with 💜 for the streaming community</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedSlot = '';
+        let bookings = {};
+
+        // Load bookings from localStorage
+        const savedBookings = localStorage.getItem('klayeaBookings');
+        if (savedBookings) {
+            bookings = JSON.parse(savedBookings);
+        }
+
+        // Apply saved bookings on load
+        Object.keys(bookings).forEach(slotId => {
+            const slot = document.querySelector(`[data-slot="${slotId}"]`);
+            if (slot) {
+                bookSlot(slotId, bookings[slotId], false);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const timeSlots = document.querySelectorAll('.time-slot');
+            const bookingSection = document.getElementById('bookingSection');
+            const streamerNameInput = document.getElementById('streamer-name');
+            const bookSlotBtn = document.getElementById('bookSlotBtn');
+            const cancelBtn = document.getElementById('cancelBtn');
+
+            timeSlots.forEach(slot => {
+                slot.addEventListener('click', function() {
+                    const slotId = this.getAttribute('data-slot');
+                    
+                    // Don't allow selecting booked slots
+                    if (bookings[slotId]) return;
+
+                    // Clear previous selection
+                    timeSlots.forEach(s => s.classList.remove('selected'));
+                    
+                    // Select this slot
+                    this.classList.add('selected');
+                    selectedSlot = slotId;
+                    
+                    // Show booking section
+                    bookingSection.classList.remove('hidden');
+                    streamerNameInput.focus();
+                });
+            });
+
+            bookSlotBtn.addEventListener('click', function() {
+                const name = streamerNameInput.value.trim();
+                if (!name || !selectedSlot) return;
+
+                bookSlot(selectedSlot, name, true);
+                
+                // Clear selection and hide booking section
+                selectedSlot = '';
+                streamerNameInput.value = '';
+                bookingSection.classList.add('hidden');
+                timeSlots.forEach(s => s.classList.remove('selected'));
+            });
+
+            cancelBtn.addEventListener('click', function() {
+                selectedSlot = '';
+                streamerNameInput.value = '';
+                bookingSection.classList.add('hidden');
+                timeSlots.forEach(s => s.classList.remove('selected'));
+            });
+
+            // Clear button functionality
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('clear-btn')) {
+                    e.stopPropagation();
+                    const slotElement = e.target.closest('.time-slot');
+                    const slotId = slotElement.getAttribute('data-slot');
+                    clearSlot(slotId);
+                }
+            });
+        });
+
+        function bookSlot(slotId, name, save = true) {
+            const slot = document.querySelector(`[data-slot="${slotId}"]`);
+            if (!slot) return;
+
+            bookings[slotId] = name;
+            
+            if (save) {
+                localStorage.setItem('klayeaBookings', JSON.stringify(bookings));
+            }
+
+            slot.classList.add('booked');
+            slot.classList.remove('selected');
+            
+            const status = slot.querySelector('.status');
+            status.innerHTML = `<div class="bg-green-100 border border-green-300 rounded px-2 py-1 text-sm font-medium text-green-800">Booked by: ${name}</div>`;
+            
+            const clearBtn = slot.querySelector('.clear-btn');
+            clearBtn.classList.remove('hidden');
+        }
+
+        function clearSlot(slotId) {
+            const slot = document.querySelector(`[data-slot="${slotId}"]`);
+            if (!slot) return;
+
+            delete bookings[slotId];
+            localStorage.setItem('klayeaBookings', JSON.stringify(bookings));
+
+            slot.classList.remove('booked');
+            
+            const status = slot.querySelector('.status');
+            status.innerHTML = 'Available';
+            status.className = 'status text-gray-500 text-sm';
+            
+            const clearBtn = slot.querySelector('.clear-btn');
+            clearBtn.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>

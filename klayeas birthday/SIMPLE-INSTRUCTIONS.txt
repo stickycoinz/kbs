@@ -1,0 +1,53 @@
+🎂 KLAYEA'S BIRTHDAY STREAM SCHEDULER - SUPER SIMPLE INSTRUCTIONS 🎂
+
+Hi! I made this for you to organize Klayea's birthday stream slots. Here's how to use it:
+
+📁 STEP 1: USE THE SCHEDULER
+- Find the file called "klayeas-birthday-stream.html" 
+- Double-click on it
+- It will open in your web browser (Chrome, Firefox, etc.)
+- That's it! The scheduler is now running!
+
+✨ HOW IT WORKS:
+- Click any available time slot
+- Type in the streamer's name 
+- Click "Book Slot"
+- The slot is now reserved!
+- All bookings save automatically (even if you close and reopen)
+
+⏰ THE SCHEDULE:
+- Friday 19th: 5 PM - 11 PM (3 slots)
+- Saturday 20th: 10 AM - 10 PM (6 slots)  
+- Sunday 21st: 12 PM - 6 PM (3 slots)
+- Shows both Eastern and British times
+
+🌐 TO SHARE WITH EVERYONE (3 EASY OPTIONS):
+
+OPTION 1 - SIMPLE SHARING:
+- Email the HTML file to everyone
+- They double-click to use it
+- (Note: Everyone has their own copy, bookings don't sync)
+
+OPTION 2 - ASK A TECH FRIEND:
+- Give the HTML file to someone who knows computers
+- Ask them to "put it online" (they'll know what to do)
+- They can make a website link everyone can use
+
+OPTION 3 - USE GOOGLE FORMS (BACKUP PLAN):
+- If the HTML doesn't work for you
+- Create a Google Form instead
+- List all the time slots as multiple choice options
+- Less pretty but gets the job done
+
+💡 IMPORTANT NOTES:
+- The HTML file works on any computer/phone/tablet
+- Bookings save on each person's device
+- For shared bookings, you need Option 2 above
+- The file is completely safe - it's just a webpage
+
+🆘 IF YOU NEED HELP:
+- Make sure the file ends with ".html" 
+- Try a different web browser if it doesn't open
+- Ask anyone who's good with computers - they can help!
+
+That's it! You've got everything you need for Klayea's birthday stream organization! 🎉
