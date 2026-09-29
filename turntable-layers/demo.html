@@ -9,8 +9,8 @@
   .turntable {
     position: relative;
     width: 100%;
-    max-width: 1536px;
-    aspect-ratio: 1536 / 1024;
+    max-width: 1025px;
+    aspect-ratio: 1025 / 821;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -21,44 +21,23 @@
     height: 100%;
     display: block;
   }
-  /* Rotation centre = label centre (753, 478) in the 1536x1024 source. */
+  /* Rotation centre of the white record in the 1025x821 source. */
   .turntable .spin {
-    transform-origin: 49.03% 46.72%;
+    transform-origin: 48.29% 48.64%;
     animation: spin 1.8s linear infinite;
     will-change: transform;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
-  /* Static film grain above every layer; jumps position each frame so it flickers instead of spinning. */
-  .turntable .grain {
-    position: absolute;
-    inset: -50%;
-    background: url("05-grain-tile.png") repeat;
-    background-size: 256px 256px;
-    mix-blend-mode: overlay;
-    opacity: 0.55;
-    pointer-events: none;
-    animation: grain 0.5s steps(6) infinite;
-  }
-  @keyframes grain {
-    0%   { transform: translate(0, 0); }
-    20%  { transform: translate(-7%, 4%); }
-    40%  { transform: translate(5%, -9%); }
-    60%  { transform: translate(-3%, 8%); }
-    80%  { transform: translate(9%, 2%); }
-    100% { transform: translate(-6%, -5%); }
-  }
   @media (prefers-reduced-motion: reduce) {
-    .turntable .spin, .turntable .grain { animation: none; }
+    .turntable .spin { animation: none; }
   }
 </style>
 </head>
 <body>
-  <div class="turntable" role="img" aria-label="Turntable playing a white label record">
+  <div class="turntable" role="img" aria-label="Turntable playing a white record">
     <img src="01-base.png" alt="" />
     <img class="spin" src="02-vinyl.png" alt="" />
-    <img class="spin" src="03-label.png" alt="" />
-    <img src="04-tonearm-spindle.png" alt="" />
-    <div class="grain" aria-hidden="true"></div>
+    <img src="03-tonearm.png" alt="" />
   </div>
 </body>
 </html>
