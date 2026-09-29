@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Turntable hero</title>
+<style>
+  body { margin: 0; background: #2a1810; }
+  .turntable {
+    position: relative;
+    width: 100%;
+    max-width: 1536px;
+    aspect-ratio: 1536 / 1024;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .turntable img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  /* Rotation centre = label centre (753, 478) in the 1536x1024 source. */
+  .turntable .spin {
+    transform-origin: 49.03% 46.72%;
+    animation: spin 1.8s linear infinite;
+    will-change: transform;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  /* Static film grain above every layer; jumps position each frame so it flickers instead of spinning. */
+  .turntable .grain {
+    position: absolute;
+    inset: -50%;
+    background: url("05-grain-tile.png") repeat;
+    background-size: 256px 256px;
+    mix-blend-mode: overlay;
+    opacity: 0.55;
+    pointer-events: none;
+    animation: grain 0.5s steps(6) infinite;
+  }
+  @keyframes grain {
+    0%   { transform: translate(0, 0); }
+    20%  { transform: translate(-7%, 4%); }
+    40%  { transform: translate(5%, -9%); }
+    60%  { transform: translate(-3%, 8%); }
+    80%  { transform: translate(9%, 2%); }
+    100% { transform: translate(-6%, -5%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .turntable .spin, .turntable .grain { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="turntable" role="img" aria-label="Turntable playing a white label record">
+    <img src="01-base.png" alt="" />
+    <img class="spin" src="02-vinyl.png" alt="" />
+    <img class="spin" src="03-label.png" alt="" />
+    <img src="04-tonearm-spindle.png" alt="" />
+    <div class="grain" aria-hidden="true"></div>
+  </div>
+</body>
+</html>
