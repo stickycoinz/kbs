@@ -4,7 +4,7 @@ These images stack on top of each other. Every file is 1536×1024 and lines up w
 
 | File | What it is | Moves? |
 |---|---|---|
-| `01-base.png` | Wood, plinth, dials, tonearm pivot, empty black mat | No |
+| `01-base.png` | Plinth, dials, tonearm pivot, and empty black mat. The wood around the deck is transparent. | No |
 | `02-vinyl.png` | White record, see-through centre | Spins |
 | `03-label.png` | Cream label with the face logo | Spins |
 | `04-tonearm-spindle.png` | Tonearm, its shadow, and the centre pin | No |

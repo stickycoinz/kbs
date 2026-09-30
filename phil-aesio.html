@@ -7,13 +7,19 @@
 <style>
   body {
     margin: 0;
-    background: #2a1810;
+    background: #f6f4f1;
   }
   .turntable {
     position: relative;
     width: 100%;
     aspect-ratio: 1536 / 1024;
     overflow: hidden;
+    -webkit-mask-image: url("turntable-layers/01-base.png");
+    mask-image: url("turntable-layers/01-base.png");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
   }
   .turntable img {
     position: absolute;
