@@ -1,0 +1,151 @@
+{
+  "id": "sdxl-screenprint",
+  "revision": 0,
+  "last_node_id": 7,
+  "last_link_id": 9,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [40, 180],
+      "size": [390, 98],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        { "name": "MODEL", "type": "MODEL", "links": [1], "slot_index": 0 },
+        { "name": "CLIP", "type": "CLIP", "links": [2, 3], "slot_index": 1 },
+        { "name": "VAE", "type": "VAE", "links": [4], "slot_index": 2 }
+      ],
+      "title": "SDXL checkpoint",
+      "properties": { "Node name for S&R": "CheckpointLoaderSimple" },
+      "widgets_values": ["sd_xl_base_1.0.safetensors"]
+    },
+    {
+      "id": 2,
+      "type": "CLIPTextEncode",
+      "pos": [480, 40],
+      "size": [460, 220],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        { "name": "clip", "type": "CLIP", "link": 2 }
+      ],
+      "outputs": [
+        { "name": "CONDITIONING", "type": "CONDITIONING", "links": [5], "slot_index": 0 }
+      ],
+      "title": "Positive prompt — paste a poster prompt here",
+      "properties": { "Node name for S&R": "CLIPTextEncode" },
+      "widgets_values": [
+        "A futuristic hi-tech humanoid robot as a judge sits behind a tall plain bench, wearing a black judicial robe over its metal body. One metal hand is raised palm-out in a ruling gesture, the other rests a wooden gavel on the bench. A human stands below looking up, both hands open. Vintage one-color screen print, monochrome royal blue ink on pure white, coarse halftone dots, distressed ink, rough silkscreen edges, bold graphic shapes, high contrast, lots of clean negative space, isolated figures, no scenery, no text, no border, strictly one ink color."
+      ]
+    },
+    {
+      "id": 3,
+      "type": "CLIPTextEncode",
+      "pos": [480, 300],
+      "size": [460, 160],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        { "name": "clip", "type": "CLIP", "link": 3 }
+      ],
+      "outputs": [
+        { "name": "CONDITIONING", "type": "CONDITIONING", "links": [6], "slot_index": 0 }
+      ],
+      "title": "Negative prompt",
+      "properties": { "Node name for S&R": "CLIPTextEncode" },
+      "widgets_values": [
+        "photograph, photorealistic, realistic skin, 3d render, octane, cgi, full color, colorful, scenery, background, room, landscape, text, letters, watermark, logo, border, frame, caption, blurry, smooth digital painting"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "EmptyLatentImage",
+      "pos": [480, 510],
+      "size": [315, 106],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        { "name": "LATENT", "type": "LATENT", "links": [7], "slot_index": 0 }
+      ],
+      "title": "Poster size",
+      "properties": { "Node name for S&R": "EmptyLatentImage" },
+      "widgets_values": [832, 1216, 1]
+    },
+    {
+      "id": 5,
+      "type": "KSampler",
+      "pos": [1000, 180],
+      "size": [315, 262],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        { "name": "model", "type": "MODEL", "link": 1 },
+        { "name": "positive", "type": "CONDITIONING", "link": 5 },
+        { "name": "negative", "type": "CONDITIONING", "link": 6 },
+        { "name": "latent_image", "type": "LATENT", "link": 7 }
+      ],
+      "outputs": [
+        { "name": "LATENT", "type": "LATENT", "links": [8], "slot_index": 0 }
+      ],
+      "properties": { "Node name for S&R": "KSampler" },
+      "widgets_values": [0, "randomize", 30, 6.5, "dpmpp_2m", "karras", 1]
+    },
+    {
+      "id": 6,
+      "type": "VAEDecode",
+      "pos": [1370, 200],
+      "size": [210, 46],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        { "name": "samples", "type": "LATENT", "link": 8 },
+        { "name": "vae", "type": "VAE", "link": 4 }
+      ],
+      "outputs": [
+        { "name": "IMAGE", "type": "IMAGE", "links": [9], "slot_index": 0 }
+      ],
+      "properties": { "Node name for S&R": "VAEDecode" }
+    },
+    {
+      "id": 7,
+      "type": "SaveImage",
+      "pos": [1630, 180],
+      "size": [400, 360],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        { "name": "images", "type": "IMAGE", "link": 9 }
+      ],
+      "outputs": [],
+      "properties": { "Node name for S&R": "SaveImage" },
+      "widgets_values": ["sdxl-screenprint"]
+    }
+  ],
+  "links": [
+    [1, 1, 0, 5, 0, "MODEL"],
+    [2, 1, 1, 2, 0, "CLIP"],
+    [3, 1, 1, 3, 0, "CLIP"],
+    [4, 1, 2, 6, 1, "VAE"],
+    [5, 2, 0, 5, 1, "CONDITIONING"],
+    [6, 3, 0, 5, 2, "CONDITIONING"],
+    [7, 4, 0, 5, 3, "LATENT"],
+    [8, 5, 0, 6, 0, "LATENT"],
+    [9, 6, 0, 7, 0, "IMAGE"]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": { "scale": 1, "offset": [0, 0] }
+  },
+  "version": 0.4
+}
